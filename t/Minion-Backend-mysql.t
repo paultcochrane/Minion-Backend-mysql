@@ -46,8 +46,13 @@ $worker->register;
 
 diag "after worker registration";
 
+use Data::Dumper;
+
+diag Dumper($worker);
+
 diag $worker->status;
 diag $worker->id;
+diag $worker->info;
 
 diag "before worker start test";
 
