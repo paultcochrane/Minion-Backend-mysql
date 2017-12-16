@@ -32,7 +32,7 @@ before_install:
       then
         sudo service mysql stop;
         sudo aptitude purge -y mysql-server libmysqlclient-dev;
-        sudo aptitude search mysql
+        sudo aptitude search mysql;
         sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5;
         . /etc/lsb-release;   # exports DISTRIB_CODENAME env var
         sudo add-apt-repository "deb http://repo.mysql.com/apt/ubuntu/ $DISTRIB_CODENAME mysql-$MYSQL_VERSION";
