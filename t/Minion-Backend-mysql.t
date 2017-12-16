@@ -49,6 +49,7 @@ diag "after worker registration";
 use Data::Dumper;
 
 diag Dumper($worker->minion->backend);
+diag Dumper($worker->minion->backend->worker_info(1));
 diag $worker->info;
 
 diag "before worker start test";
