@@ -52,7 +52,7 @@ diag Dumper($worker);
 
 diag $worker->status;
 diag $worker->id;
-diag Dumper($worker->minion->backend);
+diag Dumper($worker->minion->backend->worker_info);
 diag $worker->info;
 
 diag "before worker start test";
