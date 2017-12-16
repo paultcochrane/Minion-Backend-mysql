@@ -44,8 +44,8 @@ before_install:
       fi
 
 install:
-    - sudo cp /etc/mysql/my.cnf /usr/share/mysql/my-default.cnf
     - if [ "$TRAVIS_MARIADB_VERSION" ] ; then sudo aptitude install -y libmariadbclient-dev; fi
+    - sudo cp /etc/mysql/my.cnf /usr/share/mysql/my-default.cnf
     - dzil authordeps --missing | cpanm --no-skip-satisfied || { cat ~/.cpanm/build.log ; false ; }
     - dzil listdeps --author --missing | cpanm --no-skip-satisfied || { cat ~/.cpanm/build.log ; false ; }
     - cpanm Devel::Cover Devel::Cover::Report::Coveralls Dist::Zilla::App::Command::cover || { cat ~/.cpanm/build.log ; false ; }
