@@ -39,6 +39,8 @@ diag "before default application test";
 my $worker = $minion->repair->worker;
 isa_ok $worker->minion->app, 'Mojolicious', 'has default application';
 
+diag "before worker registration";
+
 # Register and unregister
 $worker->register;
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
