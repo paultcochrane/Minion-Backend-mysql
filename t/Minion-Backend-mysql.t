@@ -33,30 +33,23 @@ $mysql->db->query('drop table if exists minion_workers');
 my $minion = Minion->new(mysql => dsn => $mysqld->dsn( dbname => 'test' ));
 $minion->reset;
 
-diag "before default application test";
-
 # Nothing to repair
 my $worker = $minion->repair->worker;
 isa_ok $worker->minion->app, 'Mojolicious', 'has default application';
 
-diag "before worker registration";
-
 # Register and unregister
 $worker->register;
-
-diag "after worker registration";
 
 use Data::Dumper;
 
 # diag Dumper($worker->minion->backend);
 diag Dumper($worker->minion->backend->receive($worker->id));
+diag "before worker info call";
 diag $worker->info;
-
-diag "before worker start test";
+diag "after worker info call";
+diag $worker->minion->backend->worker_info($worker->id)->{started};
 
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
-
-diag "after worker start test";
 
 my $notified = $worker->info->{notified};
 like $notified, qr/^[\d.]+$/, 'has timestamp';
