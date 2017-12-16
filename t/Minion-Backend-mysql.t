@@ -46,7 +46,8 @@ $worker->register;
 
 diag "after worker registration";
 
-diag $worker->info->{started};
+diag $worker->status;
+diag $worker->id;
 
 diag "before worker start test";
 
