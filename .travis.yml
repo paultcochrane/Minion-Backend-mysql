@@ -34,7 +34,7 @@ before_install:
         sudo aptitude purge -y mysql-server libmysqlclient-dev;
         sudo aptitude search mysql
         sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5;
-        . /etc/lsb-release;
+        . /etc/lsb-release;   # exports DISTRIB_CODENAME env var
         sudo add-apt-repository "deb http://repo.mysql.com/apt/ubuntu/ $DISTRIB_CODENAME mysql-$MYSQL_VERSION";
         sudo apt-get update;
         sudo DEBIAN_FRONTEND=noninteractive apt-get -q --yes --fix-broken --allow-unauthenticated --option DPkg::Options::=--force-confnew install mysql-server libmysqlclient-dev;
