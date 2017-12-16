@@ -31,7 +31,7 @@ before_install:
     - if [ x"$MYSQL_VERSION" != "x" ];
       then
         sudo service mysql stop;
-        sudo aptitude purge -y mysql-server libmysqlclient-dev;
+        sudo aptitude purge -y mysql-server libmysqlclient-dev mysql-server-5.6 mysql-common-5.6 mysql-client-5.6 libmysqlclient18;
         sudo aptitude purge -y libdbd-mysql-perl mysql-common;
         sudo aptitude search mysql | grep '^i';
         sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5;
