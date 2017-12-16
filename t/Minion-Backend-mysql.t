@@ -46,6 +46,8 @@ $worker->register;
 
 diag "after worker registration";
 
+diag $worker->info->{id};
+
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
 
 diag "after worker start";
