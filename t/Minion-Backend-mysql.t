@@ -33,6 +33,8 @@ $mysql->db->query('drop table if exists minion_workers');
 my $minion = Minion->new(mysql => dsn => $mysqld->dsn( dbname => 'test' ));
 $minion->reset;
 
+diag "before default application test";
+
 # Nothing to repair
 my $worker = $minion->repair->worker;
 isa_ok $worker->minion->app, 'Mojolicious', 'has default application';
