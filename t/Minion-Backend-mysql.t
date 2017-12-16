@@ -43,6 +43,9 @@ diag "before worker registration";
 
 # Register and unregister
 $worker->register;
+
+diag "after worker registration";
+
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
 my $notified = $worker->info->{notified};
 like $notified, qr/^[\d.]+$/, 'has timestamp';
