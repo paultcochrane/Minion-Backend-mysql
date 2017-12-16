@@ -46,11 +46,13 @@ $worker->register;
 
 diag "after worker registration";
 
-diag $worker->info->{id};
+diag $worker->info->{started};
+
+diag "before worker start test";
 
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
 
-diag "after worker start";
+diag "after worker start test";
 
 my $notified = $worker->info->{notified};
 like $notified, qr/^[\d.]+$/, 'has timestamp';
