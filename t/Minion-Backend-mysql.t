@@ -44,10 +44,11 @@ use Data::Dumper;
 
 # diag Dumper($worker->minion->backend);
 diag Dumper($worker->minion->backend->receive($worker->id));
+diag "before internal worker call";
+diag $worker->minion->backend->worker_info($worker->id)->{started};
 diag "before worker info call";
 diag $worker->info;
 diag "after worker info call";
-diag $worker->minion->backend->worker_info($worker->id)->{started};
 
 like $worker->info->{started}, qr/^[\d.]+$/, 'has timestamp';
 
