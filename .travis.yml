@@ -39,13 +39,14 @@ before_install:
         sudo apt-get update;
         sudo DEBIAN_FRONTEND=noninteractive apt-get -q --yes --fix-broken --allow-unauthenticated --option DPkg::Options::=--force-confnew install mysql-server libmysqlclient-dev;
         sudo mysql_upgrade -u root --password='' --force;
+        sudo mysql_fix_privilege_tables;
         sudo service mysql restart;
       fi
 
 install:
     - if [ "$TRAVIS_MARIADB_VERSION" ] ; then sudo aptitude install -y libmariadbclient-dev; fi
     - sudo cp /etc/mysql/my.cnf /usr/share/mysql/my-default.cnf
-    - mysql -u root -p'' -e 'show databases;'
+    # - mysql -u root -p'' -e 'show databases;'
     - cpanm Data::Dumper
     - dzil authordeps --missing | cpanm --no-skip-satisfied || { cat ~/.cpanm/build.log ; false ; }
     - dzil listdeps --author --missing | cpanm --no-skip-satisfied || { cat ~/.cpanm/build.log ; false ; }
