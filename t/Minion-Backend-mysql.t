@@ -42,6 +42,9 @@ $worker->register;
 
 use Data::Dumper;
 
+use Carp 'verbose';
+$SIG{ __DIE__ } = sub { Carp::confess( @_ ) };
+
 # diag Dumper($worker->minion->backend);
 diag Dumper($worker->minion->backend->receive($worker->id));
 diag "before internal worker call";
