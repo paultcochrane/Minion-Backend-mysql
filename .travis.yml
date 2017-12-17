@@ -52,6 +52,7 @@ install:
 
 script:
     - sudo mysql -u root --password='' -e 'show databases;'
+    - sudo mysql -u root --password='' -e 'drop database if exists test;'
     - perl -Ilib t/Minion-Backend-mysql.t
     - dzil test --author --release
     - RELEASE_TESTING=1 AUTHOR_TESTING=1 dzil cover -report coveralls
