@@ -51,6 +51,7 @@ install:
     - cpanm Devel::Cover Devel::Cover::Report::Coveralls Dist::Zilla::App::Command::cover || { cat ~/.cpanm/build.log ; false ; }
 
 script:
+    - sudo mysql -u root --password='' -e 'show databases;'
     - perl -Ilib t/Minion-Backend-mysql.t
     - dzil test --author --release
     - RELEASE_TESTING=1 AUTHOR_TESTING=1 dzil cover -report coveralls
